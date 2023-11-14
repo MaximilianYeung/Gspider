@@ -2,7 +2,11 @@
 
 ```
 use Gspider\Factory;
-$freeDuty = Factory::FreeDuty();
+$freeDuty = Factory::FreeDuty(
+    [
+        'save_images_path' => './images/' // 本地图片保存路径(不填则不保存)
+    ]
+);
 ```
 
 ```

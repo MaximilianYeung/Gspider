@@ -16,7 +16,6 @@ class Factory
         $application = "\\Gspider\\{$namespace}\\Application";
 
         if (class_exists($application)) {
-            // CONFIG配置预留, 有需要可以自行扩展
             return new $application($config);
         }
         
