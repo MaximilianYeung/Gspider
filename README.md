@@ -50,38 +50,3 @@ $result = $freeDuty->GoodsInfo(
     ]
 );
 ```
-
-# 得物接口调用 - 部分 (注意频率限制)
-
-```
-use Gspider\Factory;
-$deWuTest = Factory::DeWu();
-```
-
-```
-// tab分类列表
-// (经过测试有登陆的功能, 如遇到提示登录可调用一次该接口)
-$result = $deWuTest->init()['tabList'];
-
-// tab分类商品
-// (需要执行tab分类列表后调用, 否则长时间不调用会出现登陆提示)
-$result = $deWuTest->ShoppingTab(
-    [
-        'limit' => 20,
-        'lastId' => '', // 当前分页 默认空为第一页 翻页依次递增1
-        'tabId' => 1000008 // 通过分类列表获取的id
-    ]
-);
-```
-
-```
-// 商品主分类
-$result = $deWuTest->Category();
-
-//商品子分类
-$result = $deWuTest->CategoryChildren(
-    [
-        'catId' => 1003183, // 分类id通过主分类接口获取
-    ]
-);
-```
