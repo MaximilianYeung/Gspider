@@ -4,6 +4,11 @@ namespace Gspider\Support;
 
 class DeWu
 {
+    public static function saveImages($data, $path, $api)
+    {
+        return $data;
+    }
+
     public static function sign($data)
     {
         ksort($data);
