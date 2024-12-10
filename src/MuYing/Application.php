@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Gspider\FreeDuty;
+namespace Gspider\MuYing;
 
 use Gspider\Support\Str;
-use Gspider\Support\FreeDuty;
+use Gspider\Support\MuYing;
 use Gspider\Exceptions\GspiderException;
 
 class Application
@@ -13,7 +13,7 @@ class Application
     /**
      * 接口域名
      */
-    const DOMAIN = 'https://global-mnappapi.yuwai6868.com';
+    const DOMAIN = 'https://api.kumob.cn';
 
     /**
      * 初始化配置
@@ -30,7 +30,7 @@ class Application
     public function __call($name, $args)
     {
         $namespace = Str::studly($name);
-        $application = "\\Gspider\\FreeDuty\\Spider\\{$namespace}";
+        $application = "\\Gspider\\MuYing\\Spider\\{$namespace}";
 
         if (class_exists($application)) {
             $reuslt = (new $application)
@@ -42,12 +42,12 @@ class Application
                 )
                 ->spider(...$args);
 
-            if ($reuslt['status'] != 200) {
-                throw new GspiderException($reuslt['msg'], $reuslt['status']);
+            if ($reuslt['code'] != 200) {
+                throw new GspiderException($reuslt['message'], $reuslt['code']);
             }
 
             if (isset($this->config['save_images_path'])) {
-                return FreeDuty::saveImages($reuslt['data'], $this->config['save_images_path'], $namespace);
+                return MuYing::saveImages($reuslt['data'], $this->config['save_images_path'], $namespace);
             }
 
             return $reuslt['data'];

@@ -22,4 +22,14 @@ class Utils
 
         return @mkdir($dir, $mode);
     }
+
+    /**
+     * 判断http开头
+     *
+     * @param  string   $string
+     * @return boolean
+     */
+    public static function isHttpPrefix($string) {
+        return strpos($string, 'http') === 0;
+    }
 }

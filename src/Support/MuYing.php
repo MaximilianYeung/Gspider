@@ -2,11 +2,11 @@
 
 namespace Gspider\Support;
 
-class FreeDuty
+class MuYing
 {
     public static function saveImages($data, $path, $api)
     {
-        $application = "\\Gspider\\Support\\SaveImages\\FreeDuty\\{$api}";
+        $application = "\\Gspider\\Support\\SaveImages\\MuYing\\{$api}";
 
         return (new $application)->handle($data, rtrim($path, '\/'));
     }

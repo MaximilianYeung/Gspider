@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Gspider\ZhongMian\Spider;
+namespace Gspider\MuYing\Spider;
 
 use Gspider\Http\Request;
 
-class GoodsInfo extends Request
+class Category extends Request
 {
-    protected $gateway = '/restapi/search/item/v3';
+    protected $gateway = '/za/api/category/list';
 
     public function spider($data)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Gspider\Support\SaveImages\FreeDuty;
+namespace Gspider\Support\SaveImages\MuYing;
 
 use Gspider\Support\Utils;
 use Gspider\Exceptions\GspiderException;
@@ -14,23 +14,19 @@ class Category
         if (!Utils::mkdirs($dir)) {
             throw new GspiderException('创建图片目录失败');
         }
+        $url = 'https://www.babyzhiai.net';
 
         $result = [];
         foreach($data as $item) {
             try {
-                if (!empty($item['icon'])) {
-                    $fileName = $dir . $item['id'] . '.png';
+                if (!empty($item['categoryIcoUrl'])) {
+                    $fileName = $dir . $item['categoryId'] . '.png';
                     if (!file_exists($fileName)) {
-                        file_put_contents($fileName, file_get_contents($item['icon']));
+                        file_put_contents($fileName, file_get_contents((Utils::isHttpPrefix($item['categoryIcoUrl']) ? $item['categoryIcoUrl'] : $url . $item['categoryIcoUrl'])));
                     }
 
                     // 替换原图片数据地址
-                    $item['icon'] = $fileName;
-
-                    // 递归处理子分类
-                    if (!empty($item['son'])) {
-                        $item['son'] = $this->handle($item['son'], $path);
-                    }
+                    $item['categoryIcoUrl'] = $fileName;
                     $result[] = $item;
                 }
             } catch (\Exception $e) {
