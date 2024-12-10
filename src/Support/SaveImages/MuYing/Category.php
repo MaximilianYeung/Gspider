@@ -17,20 +17,24 @@ class Category
         $url = 'https://www.babyzhiai.net';
 
         $result = [];
-        foreach($data as $item) {
-            try {
-                if (!empty($item['categoryIcoUrl'])) {
-                    $fileName = $dir . $item['categoryId'] . '.png';
-                    if (!file_exists($fileName)) {
-                        file_put_contents($fileName, file_get_contents((Utils::isHttpPrefix($item['categoryIcoUrl']) ? $item['categoryIcoUrl'] : $url . $item['categoryIcoUrl'])));
+        foreach ($data as $item) {
+            if (!empty($item['categoryIcoUrl'])) {
+                $fileName = $dir . $item['categoryId'] . '.png';
+                $replaceImg = true;
+                if (!file_exists($fileName)) {
+                    $img = @file_get_contents((Utils::isHttpPrefix($item['categoryIcoUrl']) ? $item['categoryIcoUrl'] : $url . $item['categoryIcoUrl']));
+                    if ($img) {
+                        @file_put_contents($fileName, $img);
+                    } else {
+                        $replaceImg = false;
                     }
-
-                    // 替换原图片数据地址
-                    $item['categoryIcoUrl'] = $fileName;
-                    $result[] = $item;
                 }
-            } catch (\Exception $e) {
-                throw new GspiderException('分类图片保存失败');
+
+                // 替换原图片数据地址
+                if ($replaceImg) {
+                    $item['categoryIcoUrl'] = $fileName;
+                }
+                $result[] = $item;
             }
         }
 
