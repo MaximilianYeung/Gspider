@@ -32,4 +32,34 @@ class Utils
     public static function isHttpPrefix($string) {
         return strpos($string, 'http') === 0;
     }
+
+    /**
+     * 文字输出
+     *
+     * @param  miexd $content
+     * @return mixed
+     */
+    public static function e($content) {
+        echo $content . '...' . PHP_EOL;
+    }
+
+    /**
+     * 下载开始
+     *
+     * @param  miexd $content
+     * @return mixed
+     */
+    public static function d($content) {
+        self::e('正在下载' . $content);
+    }
+
+    /**
+     * 下载完成
+     *
+     * @param  miexd $content
+     * @return mixed
+     */
+    public static function f($content) {
+        self::e($content . '下载完成');
+    }
 }

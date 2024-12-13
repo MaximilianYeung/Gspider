@@ -22,6 +22,7 @@ class Category
                 $fileName = $dir . $item['categoryId'] . '.png';
                 $replaceImg = true;
                 if (!file_exists($fileName)) {
+                    Utils::d('分类图片');
                     $img = @file_get_contents((Utils::isHttpPrefix($item['categoryIcoUrl']) ? $item['categoryIcoUrl'] : $url . $item['categoryIcoUrl']));
                     if ($img) {
                         @file_put_contents($fileName, $img);
@@ -32,6 +33,7 @@ class Category
 
                 // 替换原图片数据地址
                 if ($replaceImg) {
+                    Utils::f('分类图片');
                     $item['categoryIcoUrl'] = $fileName;
                 }
                 $result[] = $item;

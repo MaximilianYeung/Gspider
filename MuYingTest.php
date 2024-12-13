@@ -6,22 +6,32 @@ use Gspider\Factory;
 
 $muYing = Factory::MuYing(
     [
-        'save_images_path' => './images/'
+        // 'save_images_path' => './images/' // 保存图片到本地
     ]
 );
 
 // $result = $muYing->Category(
 //     [
-//         'fid' => '651',
+//         'fid' => '651', // 父级id
 //     ]
 // );
 
-$result = $muYing->GoodsList(
-    [
-        'cid' => 652,
-        'page' => 1,
-        'size' => 1
-    ]
-);
+// $result = $muYing->GoodsList(
+//     [
+//         'cid' => 652, // 分类id
+//         'page' => 1,
+//         'size' => 3
+//     ]
+// );
 
-print_r($result);
+// $result = $muYing->GoodsInfo(
+//     [
+//         'productId' => 22860, // 商品id
+//     ]
+// );
+
+// $result = $muYing->SpecList(
+//     [
+//         'productId' => 22860, // 商品id
+//     ]
+// );
