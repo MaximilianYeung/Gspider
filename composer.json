@@ -1,9 +1,6 @@
 {
     "name": "maxyeung/gspider",
     "type": "library",
-    "require": {
-        "guzzlehttp/guzzle": ">=7.4"
-    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -14,5 +11,8 @@
         {
             "name": "MaxYeung"
         }
-    ]
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    }
 }
